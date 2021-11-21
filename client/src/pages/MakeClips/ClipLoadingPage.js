@@ -21,7 +21,7 @@ import MakeClip from './MakeClip'
 import Button from '@material-ui/core/Button'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import SaveIcon from '@material-ui/icons/Save'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 const drawerWidth = 300
@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function ResponsiveDrawer(props) {
+  const history = useHistory()
   const { window } = props
   const classes = useStyles()
   const theme = useTheme()
@@ -163,7 +164,7 @@ function ResponsiveDrawer(props) {
       if (!clipid && !uuid) {
         toast.error('clipid not there')
       } else {
-        return await axios.get(`/download-clip/${uuid}/${clipid}`)
+        await axios.get(`/download-clip/${uuid}/${clipid}`)
       }
     } catch (err) {
       console.log(err)

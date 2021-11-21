@@ -139,7 +139,7 @@ router.get('/:uuid/:clipid', async (req, res) => {
     const clipfilePath = `${__dirname}/../storage${clip.filepath}`
     console.log(clipfilePath)
 
-    res.download(clipfilePath)
+    return res.download(clipfilePath)
   } catch (err) {
     console.log(err)
   }
