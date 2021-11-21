@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     fileSaved = new File(fileFields)
 
     file.mv(
-      `${__dirname}/../client/public/uploads/${file.name.split(/\s/).join('')}`,
+      `${__dirname}/../client/build/uploads/${file.name.split(/\s/).join('')}`,
       (err) => {
         if (err) {
           console.error(err)
@@ -57,7 +57,7 @@ router.get('/:uuid', async (req, res) => {
       return res.status(400).json({ msg: 'No file Found' })
     }
     console.log(video)
-    const filePath = `${__dirname}/../client/public${video.filepath}`
+    const filePath = `${__dirname}/../client/build${video.filepath}`
     console.log(filePath)
     // return res.download(filePath, video.name, (err) => {
     //   if (err) {
@@ -79,8 +79,8 @@ router.post('/:uuid', async (req, res) => {
 
     const { clipname, startingTime, duration } = req.body
 
-    const videofilePath = `${__dirname}/../client/public${video.filepath}`
-    const clipfilePath = `${__dirname}/../client/public/clips/${
+    const videofilePath = `${__dirname}/../client/build${video.filepath}`
+    const clipfilePath = `${__dirname}/../client/build/clips/${
       clipname.split(/\s/).join('') + path.extname(video.name)
     }`
 
@@ -134,7 +134,7 @@ router.get('/:uuid/:clipid', async (req, res) => {
       return res.status(400).json({ msg: 'No Clip Found' })
     }
 
-    const filePath = `${__dirname}/../client/public${clip.filepath}`
+    const filePath = `${__dirname}/../client/build${clip.filepath}`
 
     res.download(filePath)
   } catch (err) {
@@ -158,7 +158,7 @@ router.delete('/:uuid/:clipid', async (req, res) => {
       .map((clip) => clip.uuid)
       .indexOf(req.params.clipid)
 
-    const filePath = `${__dirname}/../client/public${clip.filepath}`
+    const filePath = `${__dirname}/../client/build${clip.filepath}`
 
     fs.unlinkSync(filePath)
 
