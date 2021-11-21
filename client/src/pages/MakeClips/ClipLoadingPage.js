@@ -84,6 +84,8 @@ function ResponsiveDrawer(props) {
     filepath: '',
     clips: [],
   })
+
+  console.log(videoDownloaded)
   const drawer = (
     <div>
       <div className={classes.drawerContainer}>
@@ -157,9 +159,11 @@ function ResponsiveDrawer(props) {
 
   const handleDownloadClip = async (uuid, clipid) => {
     try {
-      const res = await axios.get(`/download-clip/${uuid}/${clipid}`)
-      if (res) {
-        toast.success('Clip Downloaded')
+      console.log({ uuid, clipid })
+      if (!clipid && !uuid) {
+        toast.error('clipid not there')
+      } else {
+        await axios.get(`/download-clip/${uuid}/${clipid}`)
       }
     } catch (err) {
       console.log(err)
