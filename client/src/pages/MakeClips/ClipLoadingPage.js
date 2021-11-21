@@ -23,6 +23,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline'
 import SaveIcon from '@material-ui/icons/Save'
 import { useParams, useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
+import FileDownload from 'js-file-download'
 import 'react-toastify/dist/ReactToastify.css'
 const drawerWidth = 300
 
@@ -134,7 +135,7 @@ function ResponsiveDrawer(props) {
                     color: 'white',
                     textDecoration: 'none',
                   }}
-                  onClick={() => handleDownloadClip(uuid, obj.uuid)}
+                  onClick={() => handleDownloadClip(uuid, obj.uuid, obj.name)}
                   startIcon={<SaveIcon />}
                 >
                   Save
@@ -159,13 +160,20 @@ function ResponsiveDrawer(props) {
     }
   }
 
-  const handleDownloadClip = async (uuid, clipid) => {
+  const handleDownloadClip = async (uuid, clipid, clipname) => {
     try {
       console.log({ uuid, clipid })
       if (!clipid && !uuid) {
         toast.error('clipid not there')
       } else {
-        return await axios.get(`/download-clip/${uuid}/${clipid}`)
+        return await axios({
+          url: `/download-clip/${uuid}/${clipid}`,
+          method: 'GET',
+          responseType: 'blob', // Important
+        }).then((response) => {
+          console.log(response)
+          FileDownload(response.data, clipname + '.mp4')
+        })
       }
     } catch (err) {
       console.log(err)
