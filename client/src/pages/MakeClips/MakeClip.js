@@ -103,8 +103,8 @@ const MakeClip = ({ videoDownloaded, setVideoDownloaded }) => {
 
   const getVideo = async (uuid) => {
     try {
-      const res = await axios.get(`http://localhost:5000/download/${uuid}`)
-
+      const res = await axios.get(`/download/${uuid}`)
+      console.log(res)
       setVideoDownloaded(res.data)
     } catch (err) {
       console.log(err)

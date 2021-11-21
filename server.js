@@ -8,6 +8,7 @@ connectDB()
 
 app.use(fileUpload())
 app.use(express.static('public'))
+app.use(express.static('storage'))
 app.use(express.json({ extended: false }))
 
 // Upload Endpoint
