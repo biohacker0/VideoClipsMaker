@@ -135,7 +135,9 @@ function ResponsiveDrawer(props) {
                     color: 'white',
                     textDecoration: 'none',
                   }}
-                  onClick={() => handleDownloadClip(uuid, obj.uuid, obj.name)}
+                  onClick={(e) =>
+                    handleDownloadClip(e, uuid, obj.uuid, obj.name)
+                  }
                   startIcon={<SaveIcon />}
                 >
                   Save
@@ -160,21 +162,17 @@ function ResponsiveDrawer(props) {
     }
   }
 
-  const handleDownloadClip = async (uuid, clipid, clipname) => {
+  const handleDownloadClip = async (e, uuid, clipid, clipname) => {
+    e.preventDefault()
     try {
-      console.log({ uuid, clipid })
-      if (!clipid && !uuid) {
-        toast.error('clipid not there')
-      } else {
-        return await axios({
-          url: `/download-clip/${uuid}/${clipid}`,
-          method: 'GET',
-          responseType: 'blob', // Important
-        }).then((response) => {
-          console.log(response)
-          FileDownload(response.data, clipname + '.mp4')
-        })
-      }
+      axios({
+        url: `/download-clip/${uuid}/${clipid}`,
+        method: 'GET',
+        responseType: 'blob', // Important
+      }).then((response) => {
+        console.log(response)
+        FileDownload(response.data, `${clipname}.mp4`)
+      })
     } catch (err) {
       console.log(err)
       toast.error(err)
