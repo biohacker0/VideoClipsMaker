@@ -93,9 +93,6 @@ router.post('/:uuid', async (req, res) => {
       duration: duration,
     }
 
-    video.clips.unshift(newClip)
-
-    video.save()
     //make clip and store
     console.log(`${__dirname}/../storage${video.filepath}`)
     console.log(
@@ -110,6 +107,9 @@ router.post('/:uuid', async (req, res) => {
       .output(clipfilePath)
       .on('end', function (err) {
         if (!err) {
+          video.clips.unshift(newClip)
+          video.save()
+          res.json(video)
           console.log('successfully converted')
         }
       })
@@ -117,8 +117,6 @@ router.post('/:uuid', async (req, res) => {
         console.log('conversion error: ', +err.message)
       })
       .run()
-
-    res.json(video)
   } catch (err) {
     console.log(err)
   }

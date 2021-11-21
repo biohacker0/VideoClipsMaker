@@ -24,6 +24,7 @@ import SaveIcon from '@material-ui/icons/Save'
 import { useParams, useHistory } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import FileDownload from 'js-file-download'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import 'react-toastify/dist/ReactToastify.css'
 const drawerWidth = 300
 
@@ -75,6 +76,7 @@ function ResponsiveDrawer(props) {
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [isloading, setIsLoading] = useState(false)
 
   const { uuid } = useParams()
   const handleDrawerToggle = () => {
@@ -181,7 +183,7 @@ function ResponsiveDrawer(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined
-
+  if (isloading) return <p>Processing...</p>
   return (
     <div className={classes.root}>
       <ToastContainer />
@@ -238,6 +240,7 @@ function ResponsiveDrawer(props) {
         <MakeClip
           videoDownloaded={videoDownloaded}
           setVideoDownloaded={setVideoDownloaded}
+          setIsLoading={setIsLoading}
         />
       </main>
     </div>

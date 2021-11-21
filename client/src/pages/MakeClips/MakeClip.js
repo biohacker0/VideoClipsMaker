@@ -48,7 +48,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-const MakeClip = ({ videoDownloaded, setVideoDownloaded }) => {
+const MakeClip = ({ videoDownloaded, setVideoDownloaded, setIsLoading }) => {
   const history = useHistory()
 
   const classes = useStyles()
@@ -113,6 +113,7 @@ const MakeClip = ({ videoDownloaded, setVideoDownloaded }) => {
 
   const handleAddClip = async (uuid) => {
     try {
+      setIsLoading(true)
       const body = JSON.stringify({
         clipname: clipName,
         startingTime: value[0],
@@ -124,8 +125,9 @@ const MakeClip = ({ videoDownloaded, setVideoDownloaded }) => {
         },
       })
       setVideoDownloaded(res.data)
-      if (res) {
+      if (res.data) {
         toast.success('Clip Added, Check Hamburger option on Top Left')
+        setIsLoading(false)
       }
     } catch (err) {
       console.log(err)
