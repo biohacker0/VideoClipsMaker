@@ -163,7 +163,7 @@ function ResponsiveDrawer(props) {
       if (!clipid && !uuid) {
         toast.error('clipid not there')
       } else {
-        await axios.get(`/download-clip/${uuid}/${clipid}`)
+        return await axios.get(`/download-clip/${uuid}/${clipid}`)
       }
     } catch (err) {
       console.log(err)
