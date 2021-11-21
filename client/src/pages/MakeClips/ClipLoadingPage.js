@@ -74,6 +74,7 @@ function ResponsiveDrawer(props) {
   const classes = useStyles()
   const theme = useTheme()
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const [downloadLink, setDownloadLink] = useState('')
   const { uuid } = useParams()
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -138,6 +139,7 @@ function ResponsiveDrawer(props) {
                 >
                   Save
                 </Button>
+                <a href={downloadLink}>download</a>
               </ListItem>
             ))}
         </List>
@@ -164,7 +166,13 @@ function ResponsiveDrawer(props) {
       if (!clipid && !uuid) {
         toast.error('clipid not there')
       } else {
-        await axios.get(`/download-clip/${uuid}/${clipid}`)
+        const res = await axios.get(`/download-clip/${uuid}/${clipid}`)
+
+        if (res) {
+          setDownloadLink(res.data.downloadPath)
+        }
+
+        console.log(res.data)
       }
     } catch (err) {
       console.log(err)

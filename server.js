@@ -20,8 +20,11 @@ app.use('/download', require('./routes/file'))
 // make clip endpoint
 app.use('/make-clip', require('./routes/file'))
 
-//download clip
+//download clip link
 app.use('/download-clip', require('./routes/file'))
+
+//dowload actual clip
+app.use('/download', require('./routes/file'))
 
 //delete clip
 app.use('/delete-clip', require('./routes/file'))
