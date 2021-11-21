@@ -140,31 +140,7 @@ router.get('/:uuid/:clipid', async (req, res) => {
 
     const clipfilePath = `${__dirname}/../storage${clip.filepath}`
     console.log(clipfilePath)
-
-    res.json({
-      downloadPath: `${APP_BASE_URL}/download/clipmaker/${req.params.uuid}/${req.params.clipid}`,
-    })
-  } catch (err) {
-    console.log(err)
-  }
-})
-router.get('/clipmaker/:uuid/:clipid', async (req, res) => {
-  try {
-    const video = await File.findOne({ uuid: req.params.uuid })
-
-    if (!video) {
-      return res.status(400).json({ msg: 'No file Found' })
-    }
-
-    const clip = video.clips.find((obj) => obj.uuid === req.params.clipid)
-    if (!clip) {
-      return res.status(400).json({ msg: 'No Clip Found' })
-    }
-
-    const clipfilePath = `${__dirname}/../storage${clip.filepath}`
-    console.log(clipfilePath)
-
-    res.download(clipfilePath)
+    return res.download(clipfilePath)
   } catch (err) {
     console.log(err)
   }
