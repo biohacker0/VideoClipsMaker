@@ -11,5 +11,6 @@ cd client
 npm install
 
 # Serve on localhost:3000
+goto root folder
 npm run dev
 ```
