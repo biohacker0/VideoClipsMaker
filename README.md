@@ -12,3 +12,5 @@ npm install
 goto root folder
 npm run dev
 ```
+
+link-https://youtu.be/AQ29MilJwU0
