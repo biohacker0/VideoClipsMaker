@@ -1,6 +1,6 @@
-[Watch the App in Action](https://github.com/biohacker0) (Click to watch the video working of the app)
+# Clip Maker Project
 
-This project is a web-based clip maker that allows users to upload a video, set start and end times using sliders, and create video clips with custom timings.
+[Watch the App in Action](https://www.loom.com/share/84cd43dd36cd4b54bde195d2945035b2?sid=85614989-3348-449e-bd63-9f5d4bfe9ec2) (Click to watch the video working of the app)
 
 ## Quick Start
 
