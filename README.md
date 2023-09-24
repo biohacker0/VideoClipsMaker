@@ -1,4 +1,6 @@
-https://www.loom.com/share/84cd43dd36cd4b54bde195d2945035b2?sid=c2b9ed49-3acc-462b-912a-7a30b769da36
+[Watch the App in Action](https://github.com/biohacker0) (Click to watch the video working of the app)
+
+This project is a web-based clip maker that allows users to upload a video, set start and end times using sliders, and create video clips with custom timings.
 
 ## Quick Start
 
