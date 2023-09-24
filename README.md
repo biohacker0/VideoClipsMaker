@@ -1,6 +1,7 @@
 # Clip Maker Project
 
 [Watch the App in Action](https://www.loom.com/share/84cd43dd36cd4b54bde195d2945035b2?sid=85614989-3348-449e-bd63-9f5d4bfe9ec2) (Click to watch the video working of the app)
+video-https://www.loom.com/share/84cd43dd36cd4b54bde195d2945035b2?sid=25cd8912-94c4-4c08-a520-b1427557a663
 
 ## Quick Start
 
